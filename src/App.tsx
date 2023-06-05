@@ -28,6 +28,7 @@ import { User } from './types/models'
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(authService.getUser())
+  const [justLoggedIn, setJustLoggedIn] = useState(false) // new state variable
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
@@ -38,16 +39,15 @@ function App(): JSX.Element {
 
   const handleAuthEvt = (): void => {
     setUser(authService.getUser())
-    navigate('/dashboard')
+    setJustLoggedIn(true) // indicate that the user just logged in
   }
 
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate("/dashboard")
-  //   } else {
-  //     navigate("/")
-  //   }
-  // }, [user, navigate]);
+  useEffect(() => {
+    if (user && justLoggedIn) {
+      navigate("/dashboard")
+      setJustLoggedIn(false) // reset the flag
+    }
+  }, [user, justLoggedIn, navigate]);
 
   return (
     <>
