@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getAllPlaygrounds } from '../../services/playgroundService'
+import { getAllPlaygrounds, deletePlayground } from '../../services/playgroundService'
 import { PlaygroundData } from '../Editor/Editor'
 
 type Playground = PlaygroundData & { id: string };
@@ -41,6 +41,21 @@ const PlaygroundList: React.FC = () => {
     navigate(`/editor/${playgroundId}`);
   };
 
+  const handleDelete = async (playgroundId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('No token found');
+  
+      await deletePlayground(playgroundId, token);
+      setPlaygrounds(prevPlaygrounds =>
+        prevPlaygrounds.filter(playground => playground.id !== playgroundId)
+      );
+    } catch (error) {
+      console.error(error);
+      alert('Failed to delete the playground.');
+    }
+  };
+
   return (
     <div>
       <h1>My Playgrounds</h1>
@@ -51,6 +66,7 @@ const PlaygroundList: React.FC = () => {
           <p>CSS: {playground.css}</p>
           <p>JS: {playground.js}</p>
           <button onClick={() => handleEdit(playground.id)}>Edit</button>
+          <button onClick={() => handleDelete(playground.id)}>Delete</button> {/* Add delete button here */}
         </div>
       ))}
     </div>
