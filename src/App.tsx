@@ -71,6 +71,14 @@ function App(): JSX.Element {
           }
         />
         <Route
+          path="/editor/:playgroundId"
+          element={
+            <ProtectedRoute user={user}>
+              <Editor />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/my-playgrounds"
           element={
             <ProtectedRoute user={user}>
@@ -78,9 +86,7 @@ function App(): JSX.Element {
             </ProtectedRoute>
           }
         />
-        <Route path="/" element={<Landing user={user} />} />
-        <Route
-          path="/profiles"
+        <Route path="/profiles"
           element={
             <ProtectedRoute user={user}>
               <Profiles />
@@ -100,14 +106,6 @@ function App(): JSX.Element {
           element={
             <ProtectedRoute user={user}>
               <ChangePassword handleAuthEvt={handleAuthEvt} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/editor"
-          element={
-            <ProtectedRoute user={user}>
-              <Editor />
             </ProtectedRoute>
           }
         />

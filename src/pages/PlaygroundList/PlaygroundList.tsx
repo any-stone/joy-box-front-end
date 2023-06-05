@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { getAllPlaygrounds } from '../../services/playgroundService'
-import { PlaygroundData } from '../Editor/Editor' 
+import { PlaygroundData } from '../Editor/Editor'
+
+type Playground = PlaygroundData & { id: string };
 
 const PlaygroundList: React.FC = () => {
-  const [playgrounds, setPlaygrounds] = useState<PlaygroundData[]>([])
+  const [playgrounds, setPlaygrounds] = useState<Playground[]>([])
   
-  // Create a ref to track if the component is still mounted
+  const navigate = useNavigate();
+
   const isMounted = useRef(true);
 
   useEffect(() => {
     fetchPlaygrounds();
-
-    // When the component is unmounted, we change the isMounted.current to false
     return () => {
       isMounted.current = false;
     };
@@ -24,7 +26,6 @@ const PlaygroundList: React.FC = () => {
   
       const data = await getAllPlaygrounds(token);
       
-      // Only call setPlaygrounds if the component is still mounted
       if (isMounted.current) {
         setPlaygrounds(data);
       }
@@ -35,7 +36,10 @@ const PlaygroundList: React.FC = () => {
       }
     }
   };
-  
+
+  const handleEdit = (playgroundId: string) => {
+    navigate(`/editor/${playgroundId}`);
+  };
 
   return (
     <div>
@@ -46,10 +50,11 @@ const PlaygroundList: React.FC = () => {
           <p>HTML: {playground.html}</p>
           <p>CSS: {playground.css}</p>
           <p>JS: {playground.js}</p>
+          <button onClick={() => handleEdit(playground.id)}>Edit</button>
         </div>
       ))}
     </div>
   )
 }
 
-export default PlaygroundList
+export default PlaygroundList;

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 import { Controlled as CodeMirror } from 'react-codemirror2'
-import { createPlayground } from '../../services/playgroundService'
-import Pusher from 'pusher-js'
-import pushid from 'pushid'
-import axios from 'axios'
+import { createPlayground, getPlayground, updatePlayground } from '../../services/playgroundService'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material.css'
 import 'codemirror/mode/htmlmixed/htmlmixed'
@@ -17,6 +15,9 @@ export type PlaygroundData = {
 }
 
 const Editor = () => {
+  const navigate = useNavigate();
+  const { playgroundId } = useParams();
+
   const [editorState, setEditorState] = useState<PlaygroundData>({
     html: "",
     css: "",
@@ -24,6 +25,24 @@ const Editor = () => {
   });
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (playgroundId) {
+      loadPlayground(playgroundId);
+    }
+  }, [playgroundId]);
+
+  const loadPlayground = async (id: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('No token found');
+      const data = await getPlayground(id, token);
+      setEditorState(data);
+    } catch (error) {
+      console.error(error);
+      alert('Failed to load the playground.');
+    }
+  };
 
   useEffect(() => {
     runCode()
@@ -72,15 +91,18 @@ const Editor = () => {
 
   const { html, js, css } = editorState;
 
-  // Save playground to the backend
+  // Save or update playground to the backend
   const savePlayground = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (token) {
-        await createPlayground(editorState, token);
-        alert("Playground saved successfully!");
+      if (!token) throw new Error('No token found');
+
+      if (playgroundId) {
+        await updatePlayground(playgroundId, editorState, token);
+        alert("Playground updated successfully!");
       } else {
-        alert("No authentication token found. Please log in first.");
+        const data = await createPlayground(editorState, token);
+        navigate(`/editor/${data.id}`);
       }
     } catch (error) {
       console.error(error);
