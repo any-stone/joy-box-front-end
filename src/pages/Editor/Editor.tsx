@@ -1,65 +1,34 @@
 // ./pages/Editor/Editor.tsx
-import React, { useState, useEffect, useRef } from 'react';
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import Pusher from 'pusher-js';
-import pushid from 'pushid';
-import axios from 'axios';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
-import 'codemirror/mode/htmlmixed/htmlmixed';
-import 'codemirror/mode/css/css';
-import 'codemirror/mode/javascript/javascript';
+import React, { useState, useEffect, useRef } from 'react'
+import { Controlled as CodeMirror } from 'react-codemirror2'
+import { createPlayground } from '../../services/playgroundService'
+import Pusher from 'pusher-js'
+import pushid from 'pushid'
+import axios from 'axios'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/theme/material.css'
+import 'codemirror/mode/htmlmixed/htmlmixed'
+import 'codemirror/mode/css/css'
+import 'codemirror/mode/javascript/javascript'
 
-type EditorData = {
-  id: string;
-  html: string;
-  css: string;
-  js: string;
-};
+type PlaygroundData = {
+  html: string
+  css: string
+  js: string
+}
 
 const Editor = () => {
-  const [editorState, setEditorState] = useState<EditorData>({
-    id: pushid(),
+  const [editorState, setEditorState] = useState<PlaygroundData>({
     html: "",
     css: "",
     js: ""
   });
+
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    const pusher = new Pusher('905a26deb18d94655d2b', {
-      cluster: 'us2',
-      forceTLS: true
-    });
-    const channel = pusher.subscribe('editor');
-
-    channel.bind('text-update', (data: EditorData) => {
-      if (data.id === editorState.id) return;
-      setEditorState({
-        id: editorState.id,
-        html: data.html || editorState.html,
-        css: data.css || editorState.css,
-        js: data.js || editorState.js
-      });
-    });
-
-    return () => {
-      pusher.disconnect();
-    };
-  }, [editorState]);
-
-  useEffect(() => {
-    runCode();
-  }, [editorState]);
-
-  useEffect(() => {
-    syncUpdates();
-  }, [editorState]);
-
-  const syncUpdates = () => {
-    axios.post('http://localhost:5001/update-editor', editorState)
-      .catch(console.error);
-  };
+    runCode()
+  }, [editorState])
 
   const runCode = () => {
     const { html, css, js } = editorState;
@@ -68,10 +37,6 @@ const Editor = () => {
       <!DOCTYPE html>
       <html lang="en">
       <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
         <style>
           ${css}
         </style>
@@ -86,9 +51,9 @@ const Editor = () => {
     `;
 
     if (document) {
-      document.open();
-      document.write(documentContents);
-      document.close();
+      document.open()
+      document.write(documentContents)
+      document.close()
     }
   };
 
@@ -96,8 +61,8 @@ const Editor = () => {
     setEditorState(prevState => ({
       ...prevState,
       [type]: value
-    }));
-  };
+    }))
+  }
 
   const codeMirrorOptions = {
     theme: 'material',
@@ -107,6 +72,22 @@ const Editor = () => {
   };
 
   const { html, js, css } = editorState;
+
+  // Save playground to the backend
+  const savePlayground = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        await createPlayground(editorState, token);
+        alert("Playground saved successfully!");
+      } else {
+        alert("No authentication token found. Please log in first.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to save the playground!");
+    }
+  }
 
   return (
     <div className="App">
@@ -150,12 +131,13 @@ const Editor = () => {
             }}
           />
         </div>
+        <button onClick={savePlayground}>Save Playground</button>
       </section>
       <section className="result">
         <iframe title="result" className="iframe" ref={iframeRef} />
       </section>
     </div>
-  );
-};
+  )
+}
 
 export default Editor;
