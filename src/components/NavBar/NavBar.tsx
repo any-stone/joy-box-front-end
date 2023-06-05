@@ -1,5 +1,6 @@
 // npm modules
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 // types
 import { User } from '../../types/models'
@@ -11,6 +12,7 @@ interface NavBarProps {
 
 const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
+  const navigate = useNavigate();
   
   return (
     <nav>
@@ -20,6 +22,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
           <li><NavLink to="/profiles">Profiles</NavLink></li>
           <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
           <li><NavLink to="/auth/change-password">Change Password</NavLink></li>
+          <li><button onClick={() => navigate('/editor')}>New Playground</button></li>
         </ul>
       :
         <ul>
