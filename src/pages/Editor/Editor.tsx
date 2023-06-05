@@ -1,4 +1,3 @@
-// ./pages/Editor/Editor.tsx
 import React, { useState, useEffect, useRef } from 'react'
 import { Controlled as CodeMirror } from 'react-codemirror2'
 import { createPlayground } from '../../services/playgroundService'
@@ -11,7 +10,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/mode/css/css'
 import 'codemirror/mode/javascript/javascript'
 
-type PlaygroundData = {
+export type PlaygroundData = {
   html: string
   css: string
   js: string

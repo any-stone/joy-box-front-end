@@ -1,5 +1,5 @@
 // npm modules 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // pages
@@ -9,6 +9,9 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Editor from './pages/Editor/Editor'
+import Dashboard from './pages/Dashboard/Dashboard'
+import PlaygroundList from './pages/PlaygroundList/PlaygroundList'
+
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -26,16 +29,25 @@ import { User } from './types/models'
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(authService.getUser())
   const navigate = useNavigate()
-  
+
   const handleLogout = (): void => {
     authService.logout()
     setUser(null)
-    navigate('/')
+    navigate('/landing')
   }
 
   const handleAuthEvt = (): void => {
     setUser(authService.getUser())
+    navigate('/dashboard')
   }
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard")
+    } else {
+      navigate("/landing")
+    }
+  }, [user, navigate]);
 
   return (
     <>
@@ -43,13 +55,38 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
         <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute user={user}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/new-playground"
+          element={
+            <ProtectedRoute user={user}>
+              <Editor />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-playgrounds"
+          element={
+            <ProtectedRoute user={user}>
+              <PlaygroundList />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route path="/" element={<Landing user={user} />} />
+        <Route
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
               <Profiles />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/auth/signup"
           element={<Signup handleAuthEvt={handleAuthEvt} />}
@@ -79,4 +116,4 @@ function App(): JSX.Element {
   )
 }
 
-export default App
+export default App;
