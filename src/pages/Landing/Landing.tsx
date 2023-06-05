@@ -14,6 +14,8 @@ const Landing = (props: LandingProps): JSX.Element => {
   return (
     <main className={styles.container}>
       <h1>hello, {user ? user.name : 'friend'}</h1>
+      <p>Welcome to JoyBox, your favorite JavaScript playground</p>
+      <p>Please login to start </p>
     </main>
   )
 }

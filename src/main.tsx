@@ -1,15 +1,13 @@
-// npm modules
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
-
-// app
 import App from './App'
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.render(
   <React.StrictMode>
     <Router>
       <App />
     </Router>
   </React.StrictMode>,
+  document.getElementById('root')
 )
