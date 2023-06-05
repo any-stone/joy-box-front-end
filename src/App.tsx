@@ -33,7 +33,7 @@ function App(): JSX.Element {
   const handleLogout = (): void => {
     authService.logout()
     setUser(null)
-    navigate('/landing')
+    navigate('/')
   }
 
   const handleAuthEvt = (): void => {
@@ -41,13 +41,13 @@ function App(): JSX.Element {
     navigate('/dashboard')
   }
 
-  useEffect(() => {
-    if (user) {
-      navigate("/dashboard")
-    } else {
-      navigate("/landing")
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate("/dashboard")
+  //   } else {
+  //     navigate("/")
+  //   }
+  // }, [user, navigate]);
 
   return (
     <>
@@ -63,7 +63,7 @@ function App(): JSX.Element {
           }
         />
         <Route
-          path="/new-playground"
+          path="/editor"
           element={
             <ProtectedRoute user={user}>
               <Editor />
@@ -78,7 +78,7 @@ function App(): JSX.Element {
             </ProtectedRoute>
           }
         />
-        {/* <Route path="/" element={<Landing user={user} />} />
+        <Route path="/" element={<Landing user={user} />} />
         <Route
           path="/profiles"
           element={
@@ -86,7 +86,7 @@ function App(): JSX.Element {
               <Profiles />
             </ProtectedRoute>
           }
-        /> */}
+        />
         <Route
           path="/auth/signup"
           element={<Signup handleAuthEvt={handleAuthEvt} />}
