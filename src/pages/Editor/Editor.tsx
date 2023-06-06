@@ -9,6 +9,7 @@ import 'codemirror/mode/css/css'
 import 'codemirror/mode/javascript/javascript'
 
 export type PlaygroundData = {
+  name: string
   html: string
   css: string
   js: string
@@ -19,6 +20,7 @@ const Editor = () => {
   const { playgroundId } = useParams();
 
   const [editorState, setEditorState] = useState<PlaygroundData>({
+    name: "",
     html: "",
     css: "",
     js: ""
@@ -75,7 +77,7 @@ const Editor = () => {
     }
   };
 
-  const onEditorChange = (type: 'html' | 'css' | 'js', value: string) => {
+  const onEditorChange = (type: 'name' | 'html' | 'css' | 'js', value: string) => {
     setEditorState(prevState => ({
       ...prevState,
       [type]: value
@@ -113,6 +115,12 @@ const Editor = () => {
   return (
     <div className="App">
       <section className="playground">
+        <div className="editor-header">Playground Name</div>
+        <input
+          type="text"
+          value={editorState.name}
+          onChange={(e) => onEditorChange('name', e.target.value)}
+        />
         <div className="code-editor html-code">
           <div className="editor-header">HTML</div>
           <CodeMirror

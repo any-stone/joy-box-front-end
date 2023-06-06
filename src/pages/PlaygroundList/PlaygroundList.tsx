@@ -61,12 +61,12 @@ const PlaygroundList: React.FC = () => {
       <h1>My Playgrounds</h1>
       {playgrounds.map((playground, index) => (
         <div key={index}>
-          <h2>Playground #{index + 1}</h2>
+          <h2>Playground {playground.name}</h2>
           <p>HTML: {playground.html}</p>
           <p>CSS: {playground.css}</p>
           <p>JS: {playground.js}</p>
           <button onClick={() => handleEdit(playground.id)}>Edit</button>
-          <button onClick={() => handleDelete(playground.id)}>Delete</button> {/* Add delete button here */}
+          <button onClick={() => handleDelete(playground.id)}>Delete</button>
         </div>
       ))}
     </div>
