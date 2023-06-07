@@ -1,4 +1,3 @@
-// npm modules 
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
@@ -11,7 +10,6 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Editor from './pages/Editor/Editor'
 import Dashboard from './pages/Dashboard/Dashboard'
 import PlaygroundList from './pages/PlaygroundList/PlaygroundList'
-
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -28,7 +26,7 @@ import { User } from './types/models'
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(authService.getUser())
-  const [justLoggedIn, setJustLoggedIn] = useState(false) // new state variable
+  const [justLoggedIn, setJustLoggedIn] = useState(false) 
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
@@ -39,13 +37,13 @@ function App(): JSX.Element {
 
   const handleAuthEvt = (): void => {
     setUser(authService.getUser())
-    setJustLoggedIn(true) // indicate that the user just logged in
+    setJustLoggedIn(true)
   }
 
   useEffect(() => {
     if (user && justLoggedIn) {
       navigate("/dashboard")
-      setJustLoggedIn(false) // reset the flag
+      setJustLoggedIn(false)
     }
   }, [user, justLoggedIn, navigate]);
 
@@ -58,7 +56,7 @@ function App(): JSX.Element {
           path="/dashboard"
           element={
             <ProtectedRoute user={user}>
-              <Dashboard />
+              <Dashboard user={user} />
             </ProtectedRoute>
           }
         />
