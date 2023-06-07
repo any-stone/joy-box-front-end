@@ -8,6 +8,8 @@ import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/mode/css/css'
 import 'codemirror/mode/javascript/javascript'
 
+import styles from './Editor.module.css'
+
 export type PlaygroundData = {
   name: string
   html: string
@@ -127,16 +129,23 @@ const Editor = () => {
   }
 
   return (
-    <div className="App">
-      <section className="playground">
-        <div className="editor-header">Playground Name</div>
+    <div className={styles.App}>
+      <div className={styles['playground-header']}>
         <input
           type="text"
           value={editorState.name}
           onChange={(e) => onEditorChange('name', e.target.value)}
+          placeholder="Playground Name"
+          className={styles['playground-name']}
         />
-        <div className="code-editor html-code">
-          <div className="editor-header">HTML</div>
+        <button onClick={savePlayground} className={styles['save-button']}>Save Playground</button>
+        {playgroundId && (
+          <button onClick={() => handleDelete(playgroundId)} className={styles['delete-button']}>Delete Playground</button>
+        )}
+      </div>
+      <section className={styles.playground}>
+        <div className={`${styles['code-editor']} ${styles['html-code']}`}>
+          <div className={styles['editor-header']}>HTML</div>
           <CodeMirror
             value={html}
             options={{
@@ -148,8 +157,8 @@ const Editor = () => {
             }}
           />
         </div>
-        <div className="code-editor css-code">
-          <div className="editor-header">CSS</div>
+        <div className={`${styles['code-editor']} ${styles['css-code']}`}>
+          <div className={styles['editor-header']}>CSS</div>
           <CodeMirror
             value={css}
             options={{
@@ -161,8 +170,8 @@ const Editor = () => {
             }}
           />
         </div>
-        <div className="code-editor js-code">
-          <div className="editor-header">JS</div>
+        <div className={`${styles['code-editor']} ${styles['js-code']}`}>
+          <div className={styles['editor-header']}>JS</div>
           <CodeMirror
             value={js}
             options={{
@@ -174,15 +183,9 @@ const Editor = () => {
             }}
           />
         </div>
-        <button onClick={savePlayground}>Save Playground</button>
-
-        {playgroundId && (
-          <button onClick={() => handleDelete(playgroundId)}>Delete Playground</button>
-        )}
-
       </section>
-      <section className="result">
-        <iframe title="result" className="iframe" ref={iframeRef} />
+      <section className={styles.result}>
+        <iframe title="result" className={styles.iframe} ref={iframeRef} />
       </section>
     </div>
   )

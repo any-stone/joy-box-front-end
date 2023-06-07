@@ -1,0 +1,83 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+
+.playground {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.playground-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.playground-name {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.save-button, .delete-button {
+  margin-left: 10px;
+}
+
+
+.editor-header {
+  background-color: #424242;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.code-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.code-editor .CodeMirror {
+  flex: 1;
+  border-top: 1px solid #ddd;
+}
+
+.result {
+  flex: 2;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .playground {
+    flex-direction: row;
+  }
+
+  .result {
+    margin-top: 0;
+  }
+
+  .iframe {
+    height: calc(100vh - 70px);
+  }
+}
