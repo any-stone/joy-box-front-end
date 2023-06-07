@@ -37,16 +37,26 @@ button {
   margin-left: 10px;
   color: #FFEB3B;
   background-color: #1C1E2A;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 button:hover {
   box-shadow: 0 8px 16px 0 #696969;
+  cursor: pointer;
+}
+
+input[type=text] {
+  background-color: #242424;
+  color: white;
+  outline: none;
 }
 
 a,
 a:visited {
   color: #00d8ff
 }
+
 
 nav > ul {
   margin: 0;
