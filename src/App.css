@@ -11,6 +11,10 @@
   box-sizing: inherit;
 }
 
+* {
+  caret-color: #FFEB3B;
+}
+
 body {
   box-sizing: border-box;
 
@@ -27,6 +31,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+button {
+  margin-left: 10px;
+  color: #FFEB3B;
+  background-color: #1C1E2A;
+}
+
+button:hover {
+  box-shadow: 0 8px 16px 0 #696969;
 }
 
 a,

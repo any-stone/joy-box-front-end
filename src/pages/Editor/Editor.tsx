@@ -121,7 +121,7 @@ const Editor = () => {
 
       await deletePlayground(playgroundId, token);
       alert('Playground deleted successfully.');
-      navigate('/');  // navigate back to the playground list
+      navigate('/')
     } catch (error) {
       console.error(error);
       alert('Failed to delete the playground.');
@@ -138,9 +138,9 @@ const Editor = () => {
           placeholder="Playground Name"
           className={styles['playground-name']}
         />
-        <button onClick={savePlayground} className={styles['save-button']}>Save Playground</button>
+        <button onClick={savePlayground} className={styles['save-button']}>Save</button>
         {playgroundId && (
-          <button onClick={() => handleDelete(playgroundId)} className={styles['delete-button']}>Delete Playground</button>
+          <button onClick={() => handleDelete(playgroundId)} className={styles['delete-button']}>Delete</button>
         )}
       </div>
       <section className={styles.playground}>
@@ -171,7 +171,7 @@ const Editor = () => {
           />
         </div>
         <div className={`${styles['code-editor']} ${styles['js-code']}`}>
-          <div className={styles['editor-header']}>JS</div>
+          <div className={styles['editor-header']}>JavaScript</div>
           <CodeMirror
             value={js}
             options={{

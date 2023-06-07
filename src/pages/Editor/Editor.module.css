@@ -5,7 +5,6 @@
   height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #f0f0f0;
 }
 
 .playground {
@@ -13,6 +12,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.playground-name:hover, .code-editor:hover {
+  box-shadow: 0 8px 16px 0 #696969;
 }
 
 .playground-header {
@@ -27,17 +30,12 @@
   margin-right: 10px;
 }
 
-.save-button, .delete-button {
-  margin-left: 10px;
-}
-
 
 .editor-header {
   background-color: #424242;
-  color: white;
+  color: #FFEB3B;
   padding: 10px;
   font-weight: bold;
-  border-radius: 5px;
 }
 
 .code-editor {
@@ -46,7 +44,6 @@
   flex-direction: column;
   background-color: white;
   border-radius: 5px;
-  border: 1px solid #ddd;
 }
 
 .code-editor .CodeMirror {
