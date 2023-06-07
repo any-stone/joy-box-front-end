@@ -1,0 +1,61 @@
+.playgroundsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.playgroundCard {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 #696969; 
+  transition: 0.3s;
+  padding: 20px;
+  text-decoration: none;
+  color: black;
+  background-color: #303646; 
+  position: relative;
+}
+
+.playgroundCard:hover {
+  box-shadow: 0 8px 16px 0 #696969;
+}
+
+.playgroundName {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #D9D9D9; 
+}
+
+.playgroundButton {
+  position: absolute;
+  bottom: 10px;
+  color: #5F89C3; 
+  background-color: #1C1E2A;
+}
+
+.playgroundCardsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  text-align: center; /* Center the title */
+  width: 100%; /* Full width to make sure it takes its own line */
+}
+
+@media (min-width: var(--breakpoint-md)) {
+  .playgroundCard {
+    max-width: 45%; /* Adjust according to your preference for medium screens */
+  }
+}
+
+@media (min-width: var(--breakpoint-lg)) {
+  .playgroundCard {
+    max-width: 30%; /* Adjust according to your preference for large screens */
+  }
+}
