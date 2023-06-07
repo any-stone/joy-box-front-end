@@ -66,7 +66,6 @@ const PlaygroundList: React.FC = () => {
           <Link to={`/editor/${playground.id}`} key={playground.id}>
             <div className={styles.playgroundCard}>
               <div className={styles.playgroundName}>{playground.name}</div>
-              <button className={styles.playgroundButton} onClick={() => handleDelete(playground.id)}>Delete</button>
             </div>
           </Link>
         ))}

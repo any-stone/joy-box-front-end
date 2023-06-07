@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { Controlled as CodeMirror } from 'react-codemirror2'
-import { createPlayground, getPlayground, updatePlayground } from '../../services/playgroundService'
+import { createPlayground, getPlayground, updatePlayground, deletePlayground } from '../../services/playgroundService'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material.css'
 import 'codemirror/mode/htmlmixed/htmlmixed'
@@ -112,6 +112,20 @@ const Editor = () => {
     }
   }
 
+  const handleDelete = async (playgroundId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('No token found');
+
+      await deletePlayground(playgroundId, token);
+      alert('Playground deleted successfully.');
+      navigate('/');  // navigate back to the playground list
+    } catch (error) {
+      console.error(error);
+      alert('Failed to delete the playground.');
+    }
+  }
+
   return (
     <div className="App">
       <section className="playground">
@@ -161,6 +175,11 @@ const Editor = () => {
           />
         </div>
         <button onClick={savePlayground}>Save Playground</button>
+
+        {playgroundId && (
+          <button onClick={() => handleDelete(playgroundId)}>Delete Playground</button>
+        )}
+
       </section>
       <section className="result">
         <iframe title="result" className="iframe" ref={iframeRef} />
@@ -169,4 +188,4 @@ const Editor = () => {
   )
 }
 
-export default Editor;
+export default Editor
