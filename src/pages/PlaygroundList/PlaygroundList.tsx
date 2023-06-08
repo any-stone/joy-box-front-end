@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { getAllPlaygrounds, deletePlayground } from '../../services/playgroundService'
+import { Link } from 'react-router-dom';
+import { getAllPlaygrounds } from '../../services/playgroundService'
 import { PlaygroundData } from '../Editor/Editor'
 
 import styles from './PlaygroundList.module.css'
@@ -10,7 +10,6 @@ type Playground = PlaygroundData & { id: string };
 const PlaygroundList: React.FC = () => {
   const [playgrounds, setPlaygrounds] = useState<Playground[]>([])
 
-  const navigate = useNavigate();
 
   const isMounted = useRef(true);
 
