@@ -2,19 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 100vh;
-  padding: 3em; /* Updated padding for consistency */
+  height: 100vh; 
+  padding: 3em; 
   box-sizing: border-box;
-  color: #FFEB3B; /* Added color for consistency */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/public/playrgounds.jpg') no-repeat center center fixed; /* Added background for consistency */
+  color: #FFEB3B; 
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/public/playgrounds.jpg') no-repeat center center fixed; 
   background-size: cover;
 }
 
 .playground {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: calc(100vh - 200px); /* Set a maximum height to avoid stretching */
 }
 
 .playground-name:hover, .code-editor:hover {
@@ -26,19 +26,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #424242; /* Added background color */
-  border-radius: 5px; /* Added border radius */
-  margin-bottom: 10px; /* Added margin */
-  width: 100%; /* Ensure it takes full width */
+  background-color: #424242; 
+  border-radius: 5px; 
+  margin-bottom: 10px; 
+  width: 100%;
 }
 
 .playground-name {
-  flex-grow: 0; /* Change this to 0 */
+  flex-grow: 0; 
   margin-right: 10px;
-  width: 300px; /* Added a fixed width to make it less wide */
-  padding: 10px; /* Added padding */
-  border-radius: 5px; /* Added border radius */
-  border: none; /* Removed border */
+  width: 300px; 
+  padding: 10px; 
+  border-radius: 5px; 
+  border: none; 
 }
 
 .editor-header {
@@ -52,7 +52,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #303646; /* Changed to a darker background color */
+  background-color: #303646;
   border-radius: 5px;
 }
 
@@ -62,11 +62,12 @@
 }
 
 .result {
-  flex: 2;
+  height: 700px; 
   margin-top: 10px;
-  background-color: #303646; /* Changed to a darker background color */
+  background-color: #303646;
   border-radius: 5px;
   border: 1px solid #ddd;
+  overflow: auto; 
 }
 
 .button-group {
@@ -80,7 +81,7 @@
 .action-button {
   margin-left: 10px;
   padding: 0.5em 1em;
-  font-size: 1rem; /* Adjust the size to make them smaller */
+  font-size: 1rem; 
   font-weight: bold;
   color: #FFEB3B;
   background-color: #1C1E2A;
@@ -101,7 +102,6 @@
   border: none;
 }
 
-/* Your existing media query */
 @media (min-width: 768px) {
   .playground {
     flex-direction: row;
