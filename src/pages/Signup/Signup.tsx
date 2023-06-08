@@ -93,11 +93,18 @@ const Signup = (props: AuthPageProps): JSX.Element => {
       <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Name
-          <input type="text" value={name} name="name" onChange={handleChange} />
+          <input
+            className={styles.inputField}
+            type="text"
+            value={name}
+            name="name"
+            onChange={handleChange}
+          />
         </label>
         <label className={styles.label}>
           Email
           <input
+            className={styles.inputField}
             type="text"
             value={email}
             name="email"
@@ -107,6 +114,7 @@ const Signup = (props: AuthPageProps): JSX.Element => {
         <label className={styles.label}>
           Password
           <input
+            className={styles.inputField}
             type="password"
             value={password}
             name="password"
@@ -116,6 +124,7 @@ const Signup = (props: AuthPageProps): JSX.Element => {
         <label className={styles.label}>
           Confirm Password
           <input
+            className={styles.inputField}
             type="password"
             value={passwordConf}
             name="passwordConf"
@@ -132,9 +141,8 @@ const Signup = (props: AuthPageProps): JSX.Element => {
           />
         </label>
         <div>
-          <Link to="/">Cancel</Link>
           <button
-            className={styles.button}
+            className={styles.signupButton}
             disabled={ isFormInvalid() || isSubmitted }
           >
             {!isSubmitted ? 'Sign Up' : '🚀 Sending...'}

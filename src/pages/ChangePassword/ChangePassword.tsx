@@ -81,7 +81,6 @@ const ChangePassword = (props: AuthPageProps): JSX.Element => {
           />
         </label>
         <div>
-          <Link to="/">Cancel</Link>
           <button className={styles.button} disabled={isFormInvalid()}>
             Change Password
           </button>
