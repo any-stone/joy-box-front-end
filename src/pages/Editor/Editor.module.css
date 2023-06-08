@@ -3,8 +3,11 @@
   flex-direction: column;
   gap: 10px;
   height: 100vh;
-  padding: 20px;
+  padding: 3em; /* Updated padding for consistency */
   box-sizing: border-box;
+  color: #FFEB3B; /* Added color for consistency */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/public/playrgounds.jpg') no-repeat center center fixed; /* Added background for consistency */
+  background-size: cover;
 }
 
 .playground {
@@ -23,13 +26,20 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  background-color: #424242; /* Added background color */
+  border-radius: 5px; /* Added border radius */
+  margin-bottom: 10px; /* Added margin */
+  width: 100%; /* Ensure it takes full width */
 }
 
 .playground-name {
-  flex-grow: 1;
+  flex-grow: 0; /* Change this to 0 */
   margin-right: 10px;
+  width: 300px; /* Added a fixed width to make it less wide */
+  padding: 10px; /* Added padding */
+  border-radius: 5px; /* Added border radius */
+  border: none; /* Removed border */
 }
-
 
 .editor-header {
   background-color: #424242;
@@ -42,7 +52,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #303646; /* Changed to a darker background color */
   border-radius: 5px;
 }
 
@@ -54,9 +64,35 @@
 .result {
   flex: 2;
   margin-top: 10px;
-  background-color: white;
+  background-color: #303646; /* Changed to a darker background color */
   border-radius: 5px;
   border: 1px solid #ddd;
+}
+
+.button-group {
+  margin-left: auto;
+}
+
+.save-button {
+  margin-right: 8px;
+}
+
+.action-button {
+  margin-left: 10px;
+  padding: 0.5em 1em;
+  font-size: 1rem; /* Adjust the size to make them smaller */
+  font-weight: bold;
+  color: #FFEB3B;
+  background-color: #1C1E2A;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-left: auto;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px 0 #696969;
 }
 
 .iframe {
@@ -65,6 +101,7 @@
   border: none;
 }
 
+/* Your existing media query */
 @media (min-width: 768px) {
   .playground {
     flex-direction: row;

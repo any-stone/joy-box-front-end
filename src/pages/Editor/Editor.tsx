@@ -138,10 +138,12 @@ const Editor = () => {
           placeholder="Playground Name"
           className={styles['playground-name']}
         />
-        <button onClick={savePlayground} className={styles['save-button']}>Save</button>
-        {playgroundId && (
-          <button onClick={() => handleDelete(playgroundId)} className={styles['delete-button']}>Delete</button>
-        )}
+        <div className={styles['button-group']}>
+          <button onClick={savePlayground} className={`${styles['action-button']} ${styles['save-button']} ${styles['margin-right']}`}>Save</button>
+          {playgroundId && (
+            <button onClick={() => handleDelete(playgroundId)} className={styles['action-button']}>Delete</button>
+          )}
+        </div>
       </div>
       <section className={styles.playground}>
         <div className={`${styles['code-editor']} ${styles['html-code']}`}>
