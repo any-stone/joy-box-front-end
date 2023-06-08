@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Landing.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -39,25 +39,6 @@ const PlaygroundList: React.FC = () => {
     }
   };
 
-  const handleEdit = (playgroundId: string) => {
-    navigate(`/editor/${playgroundId}`);
-  };
-
-  const handleDelete = async (playgroundId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('No token found');
-
-      await deletePlayground(playgroundId, token);
-      setPlaygrounds(prevPlaygrounds =>
-        prevPlaygrounds.filter(playground => playground.id !== playgroundId)
-      );
-    } catch (error) {
-      console.error(error);
-      alert('Failed to delete the playground.');
-    }
-  };
-
   return (
     <div className={styles.playgroundsContainer}>
       <h1>My Playgrounds</h1>

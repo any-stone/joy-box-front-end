@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { Controlled as CodeMirror } from 'react-codemirror2'
 import { createPlayground, getPlayground, updatePlayground, deletePlayground } from '../../services/playgroundService'
@@ -154,7 +154,7 @@ const Editor = () => {
               mode: "htmlmixed",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(editor, data, value) => {
+            onBeforeChange={(value) => {
               onEditorChange('html', value);
             }}
           />
@@ -167,7 +167,7 @@ const Editor = () => {
               mode: "css",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(editor, data, value) => {
+            onBeforeChange={(value) => {
               onEditorChange('css', value);
             }}
           />
@@ -180,7 +180,7 @@ const Editor = () => {
               mode: "javascript",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(editor, data, value) => {
+            onBeforeChange={(value) => {
               onEditorChange('js', value);
             }}
           />

@@ -1,6 +1,5 @@
 // npm modules
 import { NavLink } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 
 // types
 import { User } from '../../types/models'
