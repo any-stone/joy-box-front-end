@@ -1,26 +1,32 @@
 .nav {
-  background-color: #1C1E2A;
+  background-color: rgba(0, 0, 0, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
 }
 
 .navList {
   list-style: none;
   display: flex;
-  justify-content: space-between;
-  padding: 1em 2em;
 }
 
 .navItem {
-  display: inline-block;
   margin-left: 20px;
 }
 
 .navLink {
-  color: #FFEB3B;
+  color: #aaa; 
   text-decoration: none;
-  font-weight: 600;
+  font-weight: normal;
   transition: color 0.3s ease-in-out;
 }
 
 .navLink:hover {
   color: #FFF;
+}
+
+.navLinkBrand {
+  color: #FFEB3B;
+  font-weight: bold;
 }

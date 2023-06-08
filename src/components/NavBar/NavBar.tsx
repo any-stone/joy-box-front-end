@@ -13,14 +13,13 @@ interface NavBarProps {
 }
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, handleLogout } = props
-  const navigate = useNavigate();
+  const { user, handleLogout } = props;
 
   return (
     <nav className={styles.nav}>
+      <NavLink className={styles.navLinkBrand} to="/">JOYBOX</NavLink>
       {user ?
         <ul className={styles.navList}>
-          <li className={styles.navItem}><NavLink className={styles.navLink} to="/">JoyBox</NavLink></li>
           <li className={styles.navItem}><NavLink className={styles.navLink} to="/dashboard">My Dashboard</NavLink></li>
           <li className={styles.navItem}><NavLink className={styles.navLink} to="" onClick={handleLogout}>Log out</NavLink></li>
         </ul>

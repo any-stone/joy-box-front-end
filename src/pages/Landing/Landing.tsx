@@ -7,8 +7,8 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const Landing = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Welcome to JoyBox</h1>
       <p className={styles.description}>Explore the best playground for your codes.</p>
+      <h1 className={styles.title}>WELCOME TO JOYBOX</h1>
       <NavLink to="/auth/signup">
         <button className={styles.button}>
           Get Started
