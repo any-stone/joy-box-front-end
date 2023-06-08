@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 // types
 import { User } from '../../types/models'
 
-import styles from './Navbar.module.css';
+import styles from './NavBar.module.css';
 
 interface NavBarProps {
   user: User | null;
