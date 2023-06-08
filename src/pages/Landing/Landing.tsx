@@ -8,7 +8,7 @@ const Landing = () => {
   return (
     <div className={styles.container}>
       <p className={styles.description}>Explore the best playground for your codes.</p>
-      <h1 className={styles.title}>WELCOME TO JOYBOX</h1>
+      <h1 className={styles.title}>THIS IS JOYBOX</h1>
       <NavLink to="/auth/signup">
         <button className={styles.button}>
           Get Started
