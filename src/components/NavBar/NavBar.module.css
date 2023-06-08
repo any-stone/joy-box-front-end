@@ -1,0 +1,26 @@
+.nav {
+  background-color: #1C1E2A;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+}
+
+.navItem {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.navLink {
+  color: #FFEB3B;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease-in-out;
+}
+
+.navLink:hover {
+  color: #FFF;
+}

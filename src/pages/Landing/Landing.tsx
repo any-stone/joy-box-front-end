@@ -1,22 +1,21 @@
-// css
-import styles from './Landing.module.css'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from './Landing.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-// types
-import { User } from '../../types/models'
-
-interface LandingProps {
-  user: User | null;
-}
-
-const Landing = (props: LandingProps): JSX.Element => {
-  const { user } = props
-
+const Landing = () => {
   return (
-    <main className={styles.container}>
-      <h1>hello, {user ? user.name : 'friend'}</h1>
-      <p>Welcome to JoyBox, your favorite JavaScript playground</p>
-      <p>Please login to start </p>
-    </main>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Welcome to JoyBox</h1>
+      <p className={styles.description}>Explore the best playground for your codes.</p>
+      <NavLink to="/auth/signup">
+        <button className={styles.button}>
+          Get Started
+          <FontAwesomeIcon icon={faArrowRight} className={styles.icon} />
+        </button>
+      </NavLink>
+    </div>
   )
 }
 
