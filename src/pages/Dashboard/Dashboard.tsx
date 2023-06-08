@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../types/models';
+import styles from './Dashboard.module.css';
 
 interface DashboardProps {
   user: User | null;
@@ -22,11 +23,11 @@ const Dashboard: React.FC<DashboardProps> = ({user}) => {
   };
 
   return (
-    <div>
-      <h1>Welcome to your Dashboard, {user?.name}</h1>
-      <button onClick={handleNewPlayground}>New Playground</button>
-      <button onClick={handleMyPlaygrounds}>My Playgrounds</button>
-      <button onClick={handleChangePassword}>Change Password</button>
+    <div className={styles['dashboard-container']}>
+      <h1 className={styles['dashboard-header']}>Welcome to your Dashboard, {user?.name}</h1>
+      <button className={styles['dashboard-button']} onClick={handleNewPlayground}>New Playground</button>
+      <button className={styles['dashboard-button']} onClick={handleMyPlaygrounds}>My Playgrounds</button>
+      <button className={styles['dashboard-button']} onClick={handleChangePassword}>Change Password</button>
     </div>
   );
 };

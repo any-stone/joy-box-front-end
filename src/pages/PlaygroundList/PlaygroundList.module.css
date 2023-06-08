@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 3em;
+  color: #FFEB3B;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/public/playrgounds.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .playgroundCardsContainer {
@@ -55,18 +59,24 @@
 h1 {
   text-align: center;
   width: 100%;
+  font-size: 2.5rem;
+  margin-bottom: 1em;
+  animation: fadeIn 2s;
 }
 
 @media (min-width: var(--breakpoint-md)) {
   .playgroundCard {
     flex: 1 0 45%;
-    /* Adjust according to your preference for medium screens */
   }
 }
 
 @media (min-width: var(--breakpoint-lg)) {
   .playgroundCard {
     flex: 1 0 30%;
-    /* Adjust according to your preference for large screens */
   }
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
