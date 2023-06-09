@@ -61,6 +61,7 @@ const LoginPage = (props: AuthPageProps): JSX.Element => {
             value={email}
             name="email"
             onChange={handleChange}
+            className={styles.inputField}
           />
         </label>
         <label className={styles.label}>
@@ -70,6 +71,7 @@ const LoginPage = (props: AuthPageProps): JSX.Element => {
             value={password}
             name="password"
             onChange={handleChange}
+            className={styles.inputField}
           />
         </label>
         <div>
