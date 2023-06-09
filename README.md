@@ -1,11 +1,11 @@
 ![JOYBOX](/public/JB-screenshot.png)
 
-# [JOYBOX](https://bitebuddyapp.netlify.app/)
+# [JOYBOX](joybox-app.netlify.app)
 Step into a world of pure coding bliss with JoyBox. 
 
 Whether you're a seasoned pro or just starting your coding journey, our platform offers an exhilarating playground for your skills. Prepare to be captivated, motivated, and endlessly amazed by the possibilities that await you.
 
-### [🎁 Click here to launch JOYBOX](https://bitebuddyapp.netlify.app/)
+### [🎁 Click here to launch JOYBOX](joybox-app.netlify.app)
 
 ⬅️  [Backend](https://github.com/any-stone/joy-box-back-end) repository link
 
