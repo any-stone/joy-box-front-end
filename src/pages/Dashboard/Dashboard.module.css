@@ -4,7 +4,7 @@
   align-items: center;
   padding: 3em;
   color: #FFEB3B;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/public/dashboard.jpg') no-repeat center center fixed;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/dashboard.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
 }
@@ -26,6 +26,8 @@
   border: none;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 200px;
+  text-align: center; 
 }
 
 .dashboard-button:hover {
