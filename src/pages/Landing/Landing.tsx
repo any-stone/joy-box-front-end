@@ -11,7 +11,7 @@ const Landing = () => {
   
   return (
     <div className={styles.container}>
-      <p className={styles.description}>Explore the best playground for your codes.</p>
+      <p className={styles.description}>Discover the joy of coding</p>
       <h1 className={styles.title}>THIS IS JOYBOX</h1>
       <NavLink to={targetLink}>
         <button className={styles.button}>
