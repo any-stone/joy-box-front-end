@@ -1,16 +1,21 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Landing.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Landing = () => {
+  const isLoggedIn = localStorage.getItem('token') !== null;
+  
+  const buttonLabel = isLoggedIn ? 'New Playground' : 'Get Started';
+  const targetLink = isLoggedIn ? '/editor' : '/auth/signup';
+  
   return (
     <div className={styles.container}>
       <p className={styles.description}>Explore the best playground for your codes.</p>
       <h1 className={styles.title}>THIS IS JOYBOX</h1>
-      <NavLink to="/auth/signup">
+      <NavLink to={targetLink}>
         <button className={styles.button}>
-          Get Started
+          {buttonLabel}
           <FontAwesomeIcon icon={faArrowRight} className={styles.icon} />
         </button>
       </NavLink>
@@ -18,4 +23,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default Landing;
