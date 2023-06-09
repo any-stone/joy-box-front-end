@@ -168,7 +168,7 @@ const Editor = () => {
               mode: "htmlmixed",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(value) => {
+            onBeforeChange={(editor, data, value) => {
               onEditorChange('html', value)
             }}
           />
@@ -181,7 +181,7 @@ const Editor = () => {
               mode: "css",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(value) => {
+            onBeforeChange={(editor, data, value) => {
               onEditorChange('css', value)
             }}
           />
@@ -194,7 +194,7 @@ const Editor = () => {
               mode: "javascript",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(value) => {
+            onBeforeChange={(editor, data, value) => {
               onEditorChange('js', value)
             }}
           />
