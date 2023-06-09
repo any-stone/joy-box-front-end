@@ -26,7 +26,7 @@ import { User } from './types/models'
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(authService.getUser())
-  const [justLoggedIn, setJustLoggedIn] = useState(false) 
+  const [justLoggedIn, setJustLoggedIn] = useState(false)
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
@@ -45,7 +45,7 @@ function App(): JSX.Element {
       navigate("/dashboard")
       setJustLoggedIn(false)
     }
-  }, [user, justLoggedIn, navigate]);
+  }, [user, justLoggedIn, navigate])
 
   return (
     <>
@@ -112,4 +112,4 @@ function App(): JSX.Element {
   )
 }
 
-export default App;
+export default App

@@ -1,34 +1,34 @@
 // npm modules
-import { useState, useRef } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useState, useRef } from 'react'
+import { useNavigate, NavLink } from 'react-router-dom'
 
 // services
-import * as authService from '../../services/authService';
+import * as authService from '../../services/authService'
 
 // css
-import styles from './Signup.module.css';
+import styles from './Signup.module.css'
 
 // types
-import { SignupFormData, PhotoFormData } from '../../types/forms';
-import { handleErrMsg } from '../../types/validators';
-import { AuthPageProps } from '../../types/props';
+import { SignupFormData, PhotoFormData } from '../../types/forms'
+import { handleErrMsg } from '../../types/validators'
+import { AuthPageProps } from '../../types/props'
 
 const Signup = (props: AuthPageProps): JSX.Element => {
-  const { handleAuthEvt } = props;
-  const navigate = useNavigate();
-  const imgInputRef = useRef<HTMLInputElement | null>(null);
+  const { handleAuthEvt } = props
+  const navigate = useNavigate()
+  const imgInputRef = useRef<HTMLInputElement | null>(null)
 
-  const [message, setMessage] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [message, setMessage] = useState('')
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState<SignupFormData>({
     name: '',
     email: '',
     password: '',
     passwordConf: '',
-  });
+  })
   const [photoData, setPhotoData] = useState<PhotoFormData>({
     photo: null
-  });
+  })
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setMessage('')
@@ -157,7 +157,7 @@ const Signup = (props: AuthPageProps): JSX.Element => {
         <NavLink to="/auth/login">Sign In</NavLink>
       </div>
     </main>
-  );
-};
+  )
+}
 
 export default Signup

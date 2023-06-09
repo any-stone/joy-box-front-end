@@ -1,42 +1,42 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { getAllPlaygrounds } from '../../services/playgroundService'
 import { PlaygroundData } from '../Editor/Editor'
 
 import styles from './PlaygroundList.module.css'
 
-type Playground = PlaygroundData & { id: string };
+type Playground = PlaygroundData & { id: string }
 
 const PlaygroundList: React.FC = () => {
   const [playgrounds, setPlaygrounds] = useState<Playground[]>([])
 
 
-  const isMounted = useRef(true);
+  const isMounted = useRef(true)
 
   useEffect(() => {
-    fetchPlaygrounds();
+    fetchPlaygrounds()
     return () => {
-      isMounted.current = false;
+      isMounted.current = false
     };
   }, [])
 
   const fetchPlaygrounds = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('No token found');
+      const token = localStorage.getItem('token')
+      if (!token) throw new Error('No token found')
 
-      const data = await getAllPlaygrounds(token);
+      const data = await getAllPlaygrounds(token)
 
       if (isMounted.current) {
-        setPlaygrounds(data);
+        setPlaygrounds(data)
       }
     } catch (error) {
       console.error(error);
       if (isMounted.current) {
-        alert('Failed to fetch playgrounds.');
+        alert('Failed to fetch playgrounds.')
       }
     }
-  };
+  }
 
   return (
     <div className={styles.playgroundsContainer}>
@@ -54,4 +54,4 @@ const PlaygroundList: React.FC = () => {
   )
 }
 
-export default PlaygroundList;
+export default PlaygroundList

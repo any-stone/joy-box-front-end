@@ -1,13 +1,13 @@
-import { NavLink } from 'react-router-dom';
-import styles from './Landing.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom'
+import styles from './Landing.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Landing = () => {
-  const isLoggedIn = localStorage.getItem('token') !== null;
+  const isLoggedIn = localStorage.getItem('token') !== null
   
-  const buttonLabel = isLoggedIn ? 'New Playground' : 'Get Started';
-  const targetLink = isLoggedIn ? '/editor' : '/auth/signup';
+  const buttonLabel = isLoggedIn ? 'New Playground' : 'Get Started'
+  const targetLink = isLoggedIn ? '/editor' : '/auth/signup'
   
   return (
     <div className={styles.container}>
@@ -23,4 +23,4 @@ const Landing = () => {
   )
 }
 
-export default Landing;
+export default Landing

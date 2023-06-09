@@ -26,42 +26,42 @@ const Editor = () => {
     html: "",
     css: "",
     js: ""
-  });
+  })
 
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
-  const [notification, setNotification] = useState({ message: '', type: '' });
+  const [notification, setNotification] = useState({ message: '', type: '' })
 
   const showNotification = (message: string, type: 'success' | 'error') => {
     setNotification({ message, type });
     setTimeout(() => setNotification({ message: '', type: '' }), 3000);
-  };
+  }
 
   useEffect(() => {
     if (playgroundId) {
-      loadPlayground(playgroundId);
+      loadPlayground(playgroundId)
     }
-  }, [playgroundId]);
+  }, [playgroundId])
 
   const loadPlayground = async (id: string) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('No token found');
-      const data = await getPlayground(id, token);
-      setEditorState(data);
+      const token = localStorage.getItem('token')
+      if (!token) throw new Error('No token found')
+      const data = await getPlayground(id, token)
+      setEditorState(data)
     } catch (error) {
-      console.error(error);
-      showNotification('Failed to load the playground.', 'error');
+      console.error(error)
+      showNotification('Failed to load the playground.', 'error')
     }
   };
 
   useEffect(() => {
-    runCode();
-  }, [editorState]);
+    runCode()
+  }, [editorState])
 
   const runCode = () => {
     const { html, css, js } = editorState;
-    const document = iframeRef.current?.contentDocument;
+    const document = iframeRef.current?.contentDocument
     const documentContents = `
       <!DOCTYPE html>
       <html lang="en">
@@ -80,9 +80,9 @@ const Editor = () => {
     `;
 
     if (document) {
-      document.open();
-      document.write(documentContents);
-      document.close();
+      document.open()
+      document.write(documentContents)
+      document.close()
     }
   };
 
@@ -90,56 +90,56 @@ const Editor = () => {
     setEditorState(prevState => ({
       ...prevState,
       [type]: value
-    }));
-  };
+    }))
+  }
 
   const codeMirrorOptions = {
     theme: 'material',
     lineNumbers: true,
     scrollbarStyle: null,
     lineWrapping: true
-  };
+  }
 
-  const { html, css, js } = editorState;
+  const { html, css, js } = editorState
 
   const savePlayground = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('No token found');
+      const token = localStorage.getItem('token')
+      if (!token) throw new Error('No token found')
 
       if (playgroundId) {
-        await updatePlayground(playgroundId, editorState, token);
-        showNotification('Playground saved successfully!', 'success');
+        await updatePlayground(playgroundId, editorState, token)
+        showNotification('Playground saved successfully!', 'success')
       } else {
-        const data = await createPlayground(editorState, token);
-        navigate(`/editor/${data.id}`);
-        showNotification('Playground created successfully!', 'success');
+        const data = await createPlayground(editorState, token)
+        navigate(`/editor/${data.id}`)
+        showNotification('Playground created successfully!', 'success')
       }
     } catch (error) {
-      console.error(error);
-      showNotification('Failed to save the playground!', 'error');
+      console.error(error)
+      showNotification('Failed to save the playground!', 'error')
     }
   };
 
   const handleDelete = async (playgroundId: string) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('No token found');
+      const token = localStorage.getItem('token')
+      if (!token) throw new Error('No token found')
 
-      await deletePlayground(playgroundId, token);
-      showNotification('Playground deleted successfully.', 'success');
-      navigate('/my-playgrounds');
+      await deletePlayground(playgroundId, token)
+      showNotification('Playground deleted successfully.', 'success')
+      navigate('/my-playgrounds')
     } catch (error) {
-      console.error(error);
-      showNotification('Failed to delete the playground.', 'error');
+      console.error(error)
+      showNotification('Failed to delete the playground.', 'error')
     }
-  };
+  }
 
   const notificationMessage = notification.message ? (
     <div className={`styles.notificationMessage ${styles[notification.type]}`}>
       {notification.message}
     </div>
-  ) : null;
+  ) : null
 
   return (
     <div className={styles.App}>
@@ -169,7 +169,7 @@ const Editor = () => {
               ...codeMirrorOptions
             }}
             onBeforeChange={(value) => {
-              onEditorChange('html', value);
+              onEditorChange('html', value)
             }}
           />
         </div>
@@ -182,7 +182,7 @@ const Editor = () => {
               ...codeMirrorOptions
             }}
             onBeforeChange={(value) => {
-              onEditorChange('css', value);
+              onEditorChange('css', value)
             }}
           />
         </div>
@@ -195,7 +195,7 @@ const Editor = () => {
               ...codeMirrorOptions
             }}
             onBeforeChange={(value) => {
-              onEditorChange('js', value);
+              onEditorChange('js', value)
             }}
           />
         </div>
@@ -204,7 +204,7 @@ const Editor = () => {
         <iframe title="result" className={styles.iframe} ref={iframeRef} />
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Editor;
+export default Editor

@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom'
 // types
 import { User } from '../../types/models'
 
-import styles from './NavBar.module.css';
+import styles from './NavBar.module.css'
 
 interface NavBarProps {
-  user: User | null;
-  handleLogout: () => void;
+  user: User | null
+  handleLogout: () => void
 }
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, handleLogout } = props;
+  const { user, handleLogout } = props
 
   return (
     <nav className={styles.nav}>

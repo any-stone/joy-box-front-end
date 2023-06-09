@@ -6,7 +6,7 @@
   padding: 3em; 
   box-sizing: border-box;
   color: #FFEB3B; 
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/public/playgrounds.jpg') no-repeat center center fixed; 
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/playgrounds.jpg') no-repeat center center fixed; 
   background-size: cover;
 }
 
