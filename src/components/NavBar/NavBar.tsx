@@ -16,7 +16,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
 
   return (
     <nav className={styles.nav}>
-      <NavLink className={styles.navLinkBrand} to="/">JOYBOX</NavLink>
+      <NavLink className={styles.navLinkBrand} to="/">🎁 JOYBOX</NavLink>
       {user ?
         <ul className={styles.navList}>
           <li className={styles.navItem}><NavLink className={styles.navLink} to="/dashboard">My Dashboard</NavLink></li>
