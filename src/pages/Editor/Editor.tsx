@@ -30,6 +30,13 @@ const Editor = () => {
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
+  const [notification, setNotification] = useState({ message: '', type: '' });
+
+  const showNotification = (message: string, type: 'success' | 'error') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification({ message: '', type: '' }), 3000);
+  };
+
   useEffect(() => {
     if (playgroundId) {
       loadPlayground(playgroundId);
@@ -44,13 +51,13 @@ const Editor = () => {
       setEditorState(data);
     } catch (error) {
       console.error(error);
-      alert('Failed to load the playground.');
+      showNotification('Failed to load the playground.', 'error');
     }
   };
 
   useEffect(() => {
-    runCode()
-  }, [editorState])
+    runCode();
+  }, [editorState]);
 
   const runCode = () => {
     const { html, css, js } = editorState;
@@ -73,9 +80,9 @@ const Editor = () => {
     `;
 
     if (document) {
-      document.open()
-      document.write(documentContents)
-      document.close()
+      document.open();
+      document.write(documentContents);
+      document.close();
     }
   };
 
@@ -83,8 +90,8 @@ const Editor = () => {
     setEditorState(prevState => ({
       ...prevState,
       [type]: value
-    }))
-  }
+    }));
+  };
 
   const codeMirrorOptions = {
     theme: 'material',
@@ -93,9 +100,8 @@ const Editor = () => {
     lineWrapping: true
   };
 
-  const { html, js, css } = editorState;
+  const { html, css, js } = editorState;
 
-  // Save or update playground to the backend
   const savePlayground = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -103,16 +109,17 @@ const Editor = () => {
 
       if (playgroundId) {
         await updatePlayground(playgroundId, editorState, token);
-        alert("Playground updated successfully!");
+        showNotification('Playground saved successfully!', 'success');
       } else {
         const data = await createPlayground(editorState, token);
         navigate(`/editor/${data.id}`);
+        showNotification('Playground created successfully!', 'success');
       }
     } catch (error) {
       console.error(error);
-      alert("Failed to save the playground!");
+      showNotification('Failed to save the playground!', 'error');
     }
-  }
+  };
 
   const handleDelete = async (playgroundId: string) => {
     try {
@@ -120,16 +127,23 @@ const Editor = () => {
       if (!token) throw new Error('No token found');
 
       await deletePlayground(playgroundId, token);
-      alert('Playground deleted successfully.');
-      navigate('/')
+      showNotification('Playground deleted successfully.', 'success');
+      navigate('/');
     } catch (error) {
       console.error(error);
-      alert('Failed to delete the playground.');
+      showNotification('Failed to delete the playground.', 'error');
     }
-  }
+  };
+
+  const notificationMessage = notification.message ? (
+    <div className={`styles.notificationMessage ${styles[notification.type]}`}>
+      {notification.message}
+    </div>
+  ) : null;
 
   return (
     <div className={styles.App}>
+      {notificationMessage}
       <div className={styles['playground-header']}>
         <input
           type="text"
@@ -154,7 +168,7 @@ const Editor = () => {
               mode: "htmlmixed",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(value) => {
+            onBeforeChange={(editor, data, value) => {
               onEditorChange('html', value);
             }}
           />
@@ -167,7 +181,7 @@ const Editor = () => {
               mode: "css",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(value) => {
+            onBeforeChange={(editor, data, value) => {
               onEditorChange('css', value);
             }}
           />
@@ -180,7 +194,7 @@ const Editor = () => {
               mode: "javascript",
               ...codeMirrorOptions
             }}
-            onBeforeChange={(value) => {
+            onBeforeChange={(editor, data, value) => {
               onEditorChange('js', value);
             }}
           />
@@ -190,7 +204,7 @@ const Editor = () => {
         <iframe title="result" className={styles.iframe} ref={iframeRef} />
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Editor
+export default Editor;

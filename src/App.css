@@ -56,10 +56,9 @@ input[type=text] {
   outline: none;
 }
 
-/* a,
-a:visited {
-  color: #FFEB3B
-} */
+a {
+  text-decoration: none;
+}
 
 
 nav > ul {
