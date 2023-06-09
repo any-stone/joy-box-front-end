@@ -26,10 +26,6 @@
   border: 2px solid #FFEB3B;
 }
 
-/* input[type="file"] {
-  padding: 0;
-} */
-
 .message {
   margin-top: 0;
   height: 20px;
@@ -45,12 +41,13 @@
   margin-bottom: 50px;
 }
 
-.label {
+.label, .fileLabel {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 8px;
+  white-space: nowrap; 
 }
 
 .button {
@@ -74,19 +71,6 @@
   box-shadow: 0 8px 16px 0 #696969;
 }
 
-.form > label:last-of-type {
-  margin-bottom: 16px;
-}
-
-.fileLabel {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 8px;
-  margin-right: 10px;
-}
-
 .fileInputContainer {
   display: flex;
   align-items: center;
@@ -100,4 +84,10 @@
   border: 2px solid transparent;
   color: #aaa;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 480px) {
+  .inputField, .fileInput {
+    width: calc(100% - 40px);
+  }
 }
