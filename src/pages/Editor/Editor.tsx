@@ -128,7 +128,7 @@ const Editor = () => {
 
       await deletePlayground(playgroundId, token);
       showNotification('Playground deleted successfully.', 'success');
-      navigate('/');
+      navigate('/my-playgrounds');
     } catch (error) {
       console.error(error);
       showNotification('Failed to delete the playground.', 'error');
