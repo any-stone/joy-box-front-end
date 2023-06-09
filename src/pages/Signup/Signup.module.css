@@ -87,6 +87,20 @@
   box-sizing: border-box;
 }
 
+.signInMessage {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signInMessage a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signInMessage a:hover {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 480px) {
   .inputField, .fileInput {
     width: calc(100% - 40px);
