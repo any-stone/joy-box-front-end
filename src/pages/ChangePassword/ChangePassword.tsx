@@ -60,6 +60,7 @@ const ChangePassword = (props: AuthPageProps): JSX.Element => {
             value={curPassword}
             name="curPassword"
             onChange={handleChange}
+            className={styles.inputField}
           />
         </label>
         <label className={styles.label}>
@@ -69,6 +70,7 @@ const ChangePassword = (props: AuthPageProps): JSX.Element => {
             value={newPassword}
             name="newPassword"
             onChange={handleChange}
+            className={styles.inputField}
           />
         </label>
         <label className={styles.label}>
@@ -78,6 +80,7 @@ const ChangePassword = (props: AuthPageProps): JSX.Element => {
             value={newPasswordConf}
             name="newPasswordConf"
             onChange={handleChange}
+            className={styles.inputField}
           />
         </label>
         <div>
