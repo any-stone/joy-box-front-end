@@ -21,15 +21,14 @@
   box-sizing: border-box;
 }
 
-
 .inputField:focus {
   outline: none;
   border: 2px solid #FFEB3B;
 }
 
-input[type="file"] {
+/* input[type="file"] {
   padding: 0;
-}
+} */
 
 .message {
   margin-top: 0;
@@ -77,4 +76,28 @@ input[type="file"] {
 
 .form > label:last-of-type {
   margin-bottom: 16px;
+}
+
+.fileLabel {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-right: 10px;
+}
+
+.fileInputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.fileInput {
+  margin: 0 0 0 16px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  color: #aaa;
+  box-sizing: border-box;
 }

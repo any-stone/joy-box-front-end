@@ -52,9 +52,9 @@ const Signup = (props: AuthPageProps): JSX.Element => {
       errMsg = "Image must be in gif, jpeg/jpg, png, svg, or webp format"
       isFileInvalid = true
     }
-    
+
     setMessage(errMsg)
-    
+
     if (isFileInvalid && imgInputRef.current) {
       imgInputRef.current.value = ""
       return
@@ -131,19 +131,22 @@ const Signup = (props: AuthPageProps): JSX.Element => {
             onChange={handleChange}
           />
         </label>
-        <label className={styles.label}>
+        <label className={styles.fileLabel}>
           Upload Photo
-          <input 
-            type="file" 
-            name="photo" 
-            onChange={handleChangePhoto}
-            ref={imgInputRef}
-          />
+          <div className={styles.fileInputContainer}>
+            <input
+              className={styles.fileInput}
+              type="file"
+              name="photo"
+              onChange={handleChangePhoto}
+              ref={imgInputRef}
+            />
+          </div>
         </label>
         <div>
           <button
             className={styles.signupButton}
-            disabled={ isFormInvalid() || isSubmitted }
+            disabled={isFormInvalid() || isSubmitted}
           >
             {!isSubmitted ? 'Sign Up' : '🚀 Sending...'}
           </button>
